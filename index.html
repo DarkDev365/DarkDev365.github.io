@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Priority: Saved preference, then fallback to system
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            // If savedTheme is 'system' or null, and system is not dark, 
+            // it defaults to light implicitly.
+        })();
+    </script>
+    <style>
+        /* Eliminates the FART (Flash of InAccurate coloR Theme) */
+        :root[data-theme="dark"] {
+            background-color: #282A30;
+        }
+
+        :root[data-theme="dark"] .box {
+            background-color: #1A1A1A;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#19f5a7">
+    <title>Welcome to DarkDev365</title>
+    <meta name="robots" content="noarchive,max-snippet:-1,max-image-preview:standard,max-video-preview:-1">
+    <meta name="description" content="Welcome to DarkDev365.">
+
+    <!-- Open Graph Data -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="DarkDev365">
+    <meta property="og:title" content="Welcome to DarkDev365">
+    <meta property="og:description" content="Welcome to my corner of the web.">
+    <meta property="og:image" content="https://darkdev365.github.io/assets/images/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+
+    <!-- Twitter Data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Welcome to DarkDev365">
+    <meta name="twitter:description" content="Welcome to my corner of the web.">
+    <meta name="twitter:image" content="https://darkdev365.github.io/assets/images/og.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/profile-pic.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/profile-pic.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/profile-pic.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/styles/main.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <div class="box" role="main">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle display theme">
+                    <svg id="themeSvg" class="theme-icon-container" viewBox="0 0 24 24">
+                        <path id="themeIconPath" d="" />
+                    </svg>
+                </button>
+
+                <img alt="User Avatar" src="./assets/images/profile-pic.png" class="avatar">
+                <h1>Welcome to <span class="neon-text">DarkDev365</span></h1>
+                <div>
+                    <p>Thanks for stopping by my corner of the web!</p>
+                    <p>There is not much to do here except explore my git account</p>
+                </div>
+                <div>
+                    <a href="https://github.com/DarkDev365" class="btn pulse" target="_blank"
+                        rel="noopener noreferrer">Start browsing</a>
+                </div>
+
+                <div class="contact-support-grid">
+                    <!-- Row 1: Contact -->
+                    <h2 class="section-title">Reach out</h2>
+                    <div class="action-list">
+                        <div class="action-pill">
+                            <a href="mailto:dark_dev_365@proton.me" class="action-link" target="_blank"
+                                rel="noopener noreferrer">
+                                <div><b>Email:</b> dark_dev_365@proton.me</div>
+                            </a>
+                            <button class="icon-btn copy-btn" title="Copy to clipboard"
+                                data-copy-value="dark_dev_365@proton.me" data-copy-type="Email address">
+                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                                </svg>
+                            </button>
+                            <button class="icon-btn" title="Show QR code"
+                                onclick="document.getElementById('qr-viewer').open('mailto:dark_dev_365@proton.me', 'Scan to Email')">
+                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10 0h6v6h-6v-6zm2 2v2h2v-2h-2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Support -->
+                    <h2 class="section-title">Support me</h2>
+                    <div class="action-list">
+                        <div class="action-pill">
+                            <a href="https://ko-fi.com/dark_dev_365" class="action-link" target="_blank"
+                                rel="noopener noreferrer">
+                                <div><b>Ko-fi:</b> dark_dev_365</div>
+                            </a>
+                            <button class="icon-btn copy-btn" title="Copy to clipboard"
+                                data-copy-value="https://ko-fi.com/dark_dev_365" data-copy-type="Ko-fi address">
+                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                                </svg>
+                            </button>
+                            <button class="icon-btn" title="Show QR code"
+                                onclick="document.getElementById('qr-viewer').open('https://ko-fi.com/dark_dev_365', 'Ko-fi address')">
+                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10 0h6v6h-6v-6zm2 2v2h2v-2h-2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn ripple" onclick="document.getElementById('qr-viewer').open(null, 'Share page')">
+                    Share page
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+    <!-- Modal instance (placed once at the bottom of your page) -->
+    <qr-modal id="qr-viewer" data-color="neon-text" focus-color="neon-text"></qr-modal>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+    <script src="./assets/scripts/main.js" defer></script>
+    <script src="./assets/scripts/qr-modal.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+:root {
+    --body: linear-gradient(134.79deg, #1A1A1A 20.75%, #2b2727 91.87%);
+    --content: #DDD;
+    --text: #111;
+    --text-light: #414141;
+    --accent: #0F6116;
+    --shadow: 0px 2px 6px rgba(0, 0, 0, 0.14), 0px 22px 44px rgba(0, 0, 0, 0.1);
+    --avatar-border: rgba(0, 0, 0, 0.08);
+    --toast-bg: #DDD;
+    --toast-text: var(--accent, #0F6116);
+}
+
+:root[data-theme="dark"] {
+    --body: linear-gradient(133.24deg, #4F4E54 21.63%, #282A30 87.44%);
+    --content: #1A1A1A;
+    --text: #FAFAFA;
+    --text-light: #D1D1D1;
+    --accent: #54e65f;
+    --avatar-border: rgba(255, 255, 255, 0.15);
+    --toast-bg: #282A30;
+    --toast-text: var(--accent, #54e65f);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="system"] {
+        --body: linear-gradient(133.24deg, #4F4E54 21.63%, #282A30 87.44%);
+        --content: #1A1A1A;
+        --text: #FAFAFA;
+        --text-light: #D1D1D1;
+        --accent: #54e65f;
+        --avatar-border: rgba(255, 255, 255, 0.15);
+        --toast-bg: #282A30;
+        --toast-text: var(--accent, #54e65f);
+    }
+}
+
+html {
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    text-size-adjust: 100%;
+    height: 100%;
+}
+
+body {
+    background: var(--body);
+    background-attachment: fixed;
+    /* Ensure it covers the background fully */
+    background-size: cover;
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+a,
+a:visited,
+a:focus {
+    color: var(--text);
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 48px;
+    min-height: 100dvh;
+    min-width: 260px;
+}
+
+.content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.box {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    min-width: 260px;
+
+    background: var(--content);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 32px;
+    border-radius: 32px;
+    box-shadow: var(--shadow);
+    gap: 28px;
+    position: relative;
+}
+
+.theme-toggle-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: color 0.2s ease, transform 0.2s ease;
+    border-radius: 50%;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.theme-toggle-btn:focus {
+    outline: none;
+}
+
+.theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
+/* Fixed viewBox container for the icon path */
+.theme-icon-container {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    display: block;
+}
+
+.avatar {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid var(--avatar-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--content);
+    color: var(--text);
+    padding: 10px 28px;
+    font-weight: 500;
+    border-radius: 32px;
+    text-decoration: none !important;
+    border: none;
+}
+
+.pulse {
+    border: 3px solid var(--accent);
+}
+
+.btn:hover,
+.btn:focus {
+    outline: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--accent);
+    }
+
+    100% {
+        box-shadow: 0 0 0 14px transparent;
+    }
+}
+
+h1 {
+    margin: 0;
+    line-height: 1;
+    font-size: 2.4rem;
+}
+
+p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.contact-support-grid {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 16px 24px;
+    width: 100%;
+    min-width: 0;
+    max-width: 600px;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    text-align: left;
+    /* This padding-top aligns the text baseline with the text inside the action-pill */
+    padding-top: 12px;
+}
+
+.action-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    min-width: 230px;
+}
+
+.action-pill {
+    display: flex;
+    align-items: center;
+    background: var(--content);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    padding: 4px;
+    /* Allow the pill to be the smallest width possible, but shrink if needed */
+    min-width: 0;
+    max-width: 100%;
+}
+
+.action-link {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 16px;
+    padding: 7px 8px 7px 20px;
+    border-radius: 24px;
+    text-decoration: none !important;
+
+    /* Tell the link to fill all available space, and shrink if forced */
+    flex: 1 1 0;
+    min-width: 0;
+
+    /* Ensure internal content handles truncation */
+    overflow: hidden;
+}
+
+.action-link div {
+    /* Allow the div to shrink to trigger the ellipsis on the parent */
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.action-link b {
+    color: var(--text);
+    padding-right: 2px;
+}
+
+.action-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: color 0.2s ease;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.icon-btn:hover {
+    color: var(--accent);
+}
+
+.icon-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -3px;
+}
+
+.copy-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    display: block;
+}
+
+.neon-text {
+    color: var(--accent);
+}
+
+@keyframes note {
+    0% {
+        box-shadow: var(--shadow), 0 0 0 0 var(--accent);
+    }
+
+    100% {
+        box-shadow: var(--shadow), 0 0 0 14px transparent;
+    }
+}
+
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 6px rgb(from var(--accent) r g b / 0.55), 0 0 12px rgb(from var(--accent) r g b / 0.45), 0 0 24px rgb(from var(--accent) r g b / 0.35);
+    }
+
+    50% {
+        text-shadow: 0 0 10px rgb(from var(--accent) r g b / 0.90), 0 0 20px rgb(from var(--accent) r g b / 0.80), 0 0 40px rgb(from var(--accent) r g b / 0.70);
+    }
+}
+
+.toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translate(-50%, 30px);
+    background: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    /* Ensure pointer-events is none so it doesn't block buttons */
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+@media (max-width: 640px) {
+    html {
+        font-size: 16px;
+    }
+
+    .page {
+        padding: 16px;
+    }
+
+    .box {
+        padding: 48px 16px 32px 16px;
+        border-radius: 16px;
+    }
+
+    .theme-toggle-btn {
+        top: 12px;
+        right: 12px;
+    }
+
+    .contact-support-grid {
+        grid-template-columns: 1fr;
+        /* Tighter gap for mobile */
+        gap: 8px;
+    }
+
+    .section-title {
+        text-align: center;
+        /* Remove top padding for centered mobile layout */
+        padding-top: 0;
+    }
+
+    .action-list {
+        flex-direction: column;
+        /* Force stack */
+        align-items: center;
+    }
+
+    .action-pill {
+        /* Forces full width row */
+        width: 100%;
+        /* Keeps icon/link on opposite ends */
+        justify-content: space-between;
+    }
+}
+
+/* Animations guarded with a user preference choice, so if they prefer no animations then we respect that */
+@media (prefers-reduced-motion: no-preference) {
+
+    .pulse:hover,
+    .pulse:focus {
+        animation: pulse 1s ease-out infinite;
+    }
+
+    .neon-text {
+        animation: neonPulse 3s ease-in-out infinite;
+    }
+
+    .action-pill:hover,
+    .action-pill:focus-within,
+    .ripple:hover,
+    .ripple:focus {
+        animation: note 1s ease-out;
+    }
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+#qrModal {
+    border: none;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    background: var(--content);
+    color: var(--text);
+    box-shadow: var(--shadow);
+}
+
+#qrcode {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
